@@ -1,12 +1,31 @@
 import { Genre } from "./../hooks/useGenres";
 import useData from "./../hooks/useData";
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import {
+  Center,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import getImageCropped from "./../services/image-url";
 
 function GenreList() {
-  const { data } = useData<Genre>("/genres");
+  const { data, error, isLoading } = useData<Genre>("/genres");
+
+  if (error) return null;
   return (
     <List>
+      {isLoading && (
+        <Spinner
+          position={"relative"}
+          left={"20%"}
+          size={"lg"}
+          color="red.500"
+          thickness="3px"
+        />
+      )}
       {data.map((genre) => (
         <ListItem key={genre.id} paddingY={"5px"}>
           <HStack alignItems={"center"}>
