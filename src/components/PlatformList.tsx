@@ -11,6 +11,10 @@ interface Props {
 function PlatformList({ onSelectPlatform, selectedPlatform }: Props) {
   const { data, error } = usePlatform();
   if (error) return null;
+  {
+    console.log(selectedPlatform);
+  }
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronBarDown />}>
