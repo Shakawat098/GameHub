@@ -9,10 +9,19 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <div>
-      <Card h={"full"}>
+      <Card h={{ lg: "260px" }}>
         <Image src={getImageCropped(game.background_image)} />
         <CardBody>
-          <Heading fontSize="2xl"> {game.name}</Heading>
+          <Heading
+            fontSize="2xl"
+            whiteSpace={"nowrap"}
+            overflowY={"hidden"}
+            overflowX={"hidden"}
+            paddingBottom={2}
+            style={{ scrollbarWidth: "none" }}
+          >
+            {game.name}
+          </Heading>
           <HStack justifyContent={"space-between"} alignItems="center">
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
